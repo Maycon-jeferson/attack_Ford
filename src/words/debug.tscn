@@ -90,4 +90,3 @@ tile_set = SubResource("TileSet_i64cw")
 
 [node name="Player" parent="." instance=ExtResource("1_dpja1")]
 position = Vector2(253, 471)
-speed = 300.0
