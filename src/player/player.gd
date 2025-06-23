@@ -11,7 +11,6 @@ var jump_force: float = 350.0
 
 func _physics_process(delta: float) -> void:
 	move(delta)
-	print(velocity)
 
 func move(delta: float):
 	var direction = Vector2.ZERO
