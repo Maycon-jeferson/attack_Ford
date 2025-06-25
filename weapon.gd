@@ -30,5 +30,5 @@ func bullet_fire():
 
 		# Aplica recuo no player
 		if player and player.has_method("apply_recoil"):
-			var recoil_direction = -transform.x.normalized()
+			var recoil_direction = (player.global_position - muzzle.global_position).normalized()
 			player.apply_recoil(recoil_direction * recoil_force)

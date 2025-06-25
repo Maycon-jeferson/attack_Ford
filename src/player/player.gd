@@ -8,7 +8,6 @@ extends CharacterBody2D
 var max_fall_speed: float = 1000.0
 var gravity: float = 900.0
 var jump_force: float = 350.0
-
 func _physics_process(delta: float) -> void:
 	move(delta)
 
