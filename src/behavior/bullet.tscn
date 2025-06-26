@@ -7,6 +7,7 @@
 
 [node name="Bullet" type="Area2D"]
 script = ExtResource("1_1553v")
+speed = 1500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1553v")

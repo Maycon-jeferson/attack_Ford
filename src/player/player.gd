@@ -6,10 +6,11 @@ extends CharacterBody2D
 @onready var weapon: Node2D = $Weapon
 
 var max_fall_speed: float = 1000.0
-var gravity: float = 900.0
+var gravity: float = 1000.0
 var jump_force: float = 350.0
 func _physics_process(delta: float) -> void:
 	move(delta)
+	print(velocity.x)
 
 func move(delta: float):
 	var direction = Vector2.ZERO
@@ -31,6 +32,11 @@ func move(delta: float):
 	# MOVIMENTO COM ACELERAÇÃO
 	var target_velocity_x = direction.x * max_speed_x
 	velocity.x = move_toward(velocity.x, target_velocity_x, acceleration * delta)
+	
+	if velocity.x > max_speed_x:
+		velocity.x = max_speed_x
+	elif velocity.x < -max_speed_x:
+		velocity.x = -max_speed_x
 
 	move_and_slide()
 # Método para aplicar recuo vindo da arma
