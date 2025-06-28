@@ -1,17 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm26uf611u0xk"]
+[gd_scene load_steps=2 format=3 uid="uid://dm26uf611u0xk"]
 
 [ext_resource type="Script" uid="uid://r3mpsi0p0d2" path="res://weapon.gd" id="1_ryrhy"]
-[ext_resource type="Texture2D" uid="uid://dhso8s4hjhbvh" path="res://src/guns.png" id="2_u2ix4"]
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_ryrhy")
-shoot_cooldown = 0.15
-recoil_force = 50.0
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_u2ix4")
-centered = false
-offset = Vector2(-20, -30)
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(40, -4)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

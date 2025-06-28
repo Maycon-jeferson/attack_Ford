@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://r6w5kl3o16x4"]
+[gd_scene load_steps=8 format=4 uid="uid://r6w5kl3o16x4"]
 
 [ext_resource type="Texture2D" uid="uid://be2u0n5exhwyg" path="res://src/Sprite-0001.png" id="1_d6qkx"]
 [ext_resource type="PackedScene" uid="uid://cc4wvythgpmfg" path="res://src/player/player.tscn" id="1_dpja1"]
 [ext_resource type="PackedScene" uid="uid://s7mx2exvtgav" path="res://src/behavior/lava.tscn" id="3_i64cw"]
+[ext_resource type="PackedScene" uid="uid://efoauy12ng3w" path="res://src/itens/ak_1.tscn" id="4_tx7jt"]
+[ext_resource type="PackedScene" uid="uid://bwb7k76ggbi5y" path="res://src/itens/shootgun.tscn" id="5_swmse"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d6qkx"]
 texture = ExtResource("1_d6qkx")
@@ -95,3 +97,9 @@ position = Vector2(253, 471)
 [node name="lava" parent="." instance=ExtResource("3_i64cw")]
 position = Vector2(576, 516)
 scale = Vector2(2.4, 1.12)
+
+[node name="Ak_1" parent="." instance=ExtResource("4_tx7jt")]
+position = Vector2(1144, 499)
+
+[node name="shootgun" parent="." instance=ExtResource("5_swmse")]
+position = Vector2(958, 496)

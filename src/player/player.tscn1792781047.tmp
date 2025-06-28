@@ -9,6 +9,7 @@ size = Vector2(40, 40)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_4anbu")
 acceleration = 400.0
+max_speed_x = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(20, 20)
@@ -20,4 +21,6 @@ offset_bottom = 40.0
 
 [node name="Weapon" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_rxibo")]
 position = Vector2(20, 20)
+shoot_cooldown = 0.6
+recoil_force = 300.0
 player = NodePath("..")

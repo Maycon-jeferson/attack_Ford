@@ -3,14 +3,20 @@ extends CharacterBody2D
 @export var acceleration: float = 200.0
 @export var max_speed_x: float = 500.0
 
+var shoot_cooldown: float
+var recoil_force: float
+#var bullet_speed: float
+
 @onready var weapon: Node2D = $Weapon
 
 var max_fall_speed: float = 1000.0
 var gravity: float = 1000.0
 var jump_force: float = 350.0
+
+
 func _physics_process(delta: float) -> void:
 	move(delta)
-	print(velocity.x)
+
 
 func move(delta: float):
 	var direction = Vector2.ZERO
@@ -42,3 +48,16 @@ func move(delta: float):
 # Método para aplicar recuo vindo da arma
 func apply_recoil(force: Vector2) -> void:
 	velocity += force
+
+func equip_weapon(data: Dictionary):
+	#if data.has("sprite_texture"):
+		#sprite_texture = data["sprite_texture"]
+	
+	if data.has("shoot_cooldown"):
+		shoot_cooldown = data["shoot_cooldown"]
+		
+	if data.has("recoil_force"):
+		recoil_force = data["recoil_force"]
+		
+	print(shoot_cooldown, " ",recoil_force)
+	pass

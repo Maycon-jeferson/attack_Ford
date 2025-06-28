@@ -3,10 +3,10 @@ extends Node2D
 const bullet_scene = preload("res://src/behavior/bullet.tscn")
 @onready var muzzle = $Muzzle
 
-@export var shoot_cooldown: float = 0.3
-@export var recoil_force: float = 100.0
 @export var player: CharacterBody2D
 
+var shoot_cooldown: float
+var recoil_force: float
 var shoot_timer: float = 0.0
 
 func _process(delta: float) -> void:
@@ -21,7 +21,11 @@ func rotate_weapon():
 	scale.y = -1 if rotation_degrees > 90 and rotation_degrees < 270 else 1
 
 func bullet_fire():
-	if Input.is_action_pressed("shoot") and shoot_timer <= 0.0:
+	shoot_cooldown = player.shoot_cooldown
+	recoil_force = player.recoil_force
+	print(shoot_cooldown, " ", recoil_force)
+	
+	if Input.is_action_pressed("shoot") and shoot_timer <= 0.0 and not shoot_cooldown == 0.0:
 		var bullet_instance = bullet_scene.instantiate()
 		get_tree().root.add_child(bullet_instance)
 		bullet_instance.global_position = muzzle.global_position
