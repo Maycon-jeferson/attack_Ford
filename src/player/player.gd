@@ -8,11 +8,16 @@ var recoil_force: float
 #var bullet_speed: float
 
 @onready var weapon: Node2D = $Weapon
+# Referência para o futuro Sprite2D do player
+@onready var player_sprite: Sprite2D = get_node_or_null("Sprite2D")
 
 var max_fall_speed: float = 1000.0
 var gravity: float = 1000.0
 var jump_force: float = 350.0
 
+func _ready() -> void:
+	# Adiciona o player ao grupo para detecção de colisão
+	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
 	move(delta)
@@ -50,14 +55,25 @@ func apply_recoil(force: Vector2) -> void:
 	velocity += force
 
 func equip_weapon(data: Dictionary):
-	#if data.has("sprite_texture"):
-		#sprite_texture = data["sprite_texture"]
+	if data.has("sprite_texture"):
+		# Aplica a textura na arma
+		var weapon_sprite = weapon.get_node("Sprite2D")
+		if weapon_sprite:
+			weapon_sprite.texture = data["sprite_texture"]
+	
+	if data.has("muzzle_position"):
+		# Aplica a posição do muzzle
+		var weapon_muzzle = weapon.get_node("Muzzle")
+		if weapon_muzzle:
+			weapon_muzzle.position = data["muzzle_position"]
 	
 	if data.has("shoot_cooldown"):
 		shoot_cooldown = data["shoot_cooldown"]
 		
 	if data.has("recoil_force"):
 		recoil_force = data["recoil_force"]
-		
-	print(shoot_cooldown, " ",recoil_force)
-	pass
+
+# Método para aplicar textura no sprite do player (futuro)
+#func set_player_texture(texture: Texture2D) -> void:
+	#if player_sprite:
+		#player_sprite.texture = texture

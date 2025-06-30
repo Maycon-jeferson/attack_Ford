@@ -23,7 +23,7 @@ func rotate_weapon():
 func bullet_fire():
 	shoot_cooldown = player.shoot_cooldown
 	recoil_force = player.recoil_force
-	print(shoot_cooldown, " ", recoil_force)
+	
 	
 	if Input.is_action_pressed("shoot") and shoot_timer <= 0.0 and not shoot_cooldown == 0.0:
 		var bullet_instance = bullet_scene.instantiate()

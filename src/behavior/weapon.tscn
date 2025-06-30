@@ -6,6 +6,5 @@
 script = ExtResource("1_ryrhy")
 
 [node name="Muzzle" type="Marker2D" parent="."]
-position = Vector2(40, -4)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
