@@ -1,10 +1,13 @@
 extends CharacterBody2D
 
-@export var acceleration: float = 200.0
+@export var acceleration: float = 300.0
 @export var max_speed_x: float = 500.0
 
 var shoot_cooldown: float
 var recoil_force: float
+var recoil_velocity: Vector2 = Vector2.ZERO
+var recoil_damping: float = 12.0 # quanto maior, mais rápido o recuo é amortecido
+var max_recoil_speed: float = 350.0 # limite máximo para o recuo
 #var bullet_speed: float
 
 @onready var weapon: Node2D = $Weapon
@@ -21,7 +24,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	move(delta)
-
 
 func move(delta: float):
 	var direction = Vector2.ZERO
@@ -43,13 +45,14 @@ func move(delta: float):
 	# MOVIMENTO COM ACELERAÇÃO
 	var target_velocity_x = direction.x * max_speed_x
 	velocity.x = move_toward(velocity.x, target_velocity_x, acceleration * delta)
-	
+
 	if velocity.x > max_speed_x:
 		velocity.x = max_speed_x
 	elif velocity.x < -max_speed_x:
 		velocity.x = -max_speed_x
 
 	move_and_slide()
+
 # Método para aplicar recuo vindo da arma
 func apply_recoil(force: Vector2) -> void:
 	velocity += force

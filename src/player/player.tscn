@@ -21,3 +21,5 @@ offset_bottom = 40.0
 [node name="Weapon" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_rxibo")]
 position = Vector2(20, 20)
 player = NodePath("..")
+
+[node name="Camera2D" type="Camera2D" parent="."]

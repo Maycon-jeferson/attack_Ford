@@ -103,3 +103,5 @@ position = Vector2(1144, 499)
 
 [node name="shootgun" parent="." instance=ExtResource("5_swmse")]
 position = Vector2(958, 496)
+shoot_cooldown = 1.0
+recoil_force = 350.0
