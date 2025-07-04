@@ -22,3 +22,8 @@ func _on_body_entered(_body):
 	if _body.is_in_group("player"):
 		return
 	queue_free()
+
+func _on_area_entered(area: Area2D):
+	if area.is_in_group("button"):
+		if area.has_method("switch_button"):
+			area.switch_button()
