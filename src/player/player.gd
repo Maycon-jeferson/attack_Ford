@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-@export var acceleration: float = 300.0
+@export var acceleration: float = 400.0
 @export var max_speed_x: float = 500.0
+@export var deceleration: float = 1000.0  # Desaceleração para simular chão ensaboado
 
 var shoot_cooldown: float
 var recoil_force: float
@@ -42,9 +43,15 @@ func move(delta: float):
 	if velocity.y > max_fall_speed:
 		velocity.y = max_fall_speed
 
-	# MOVIMENTO COM ACELERAÇÃO
+	# MOVIMENTO COM ACELERAÇÃO E DESACELERAÇÃO
 	var target_velocity_x = direction.x * max_speed_x
-	velocity.x = move_toward(velocity.x, target_velocity_x, acceleration * delta)
+	
+	if direction.x != 0:
+		# Aplicar aceleração quando há input
+		velocity.x = move_toward(velocity.x, target_velocity_x, acceleration * delta)
+	else:
+		# Aplicar desaceleração quando não há input (chão ensaboado)
+		velocity.x = move_toward(velocity.x, 0, deceleration * delta)
 
 	if velocity.x > max_speed_x:
 		velocity.x = max_speed_x
@@ -55,7 +62,16 @@ func move(delta: float):
 
 # Método para aplicar recuo vindo da arma
 func apply_recoil(force: Vector2) -> void:
+	# Aplica o recoil completo (horizontal e vertical)
 	velocity += force
+	
+	# Limita a velocidade máxima do recoil horizontal
+	if abs(velocity.x) > max_speed_x + 100:
+		velocity.x = sign(velocity.x) * (max_speed_x + 100)
+	
+	# Limita a velocidade máxima do recoil vertical (pulo controlado)
+	if velocity.y < -jump_force * 1.5:
+		velocity.y = -jump_force * 1.5
 
 func equip_weapon(data: Dictionary):
 	if data.has("sprite_texture"):

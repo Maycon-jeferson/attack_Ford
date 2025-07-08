@@ -103,7 +103,7 @@ scale = Vector2(2.4, 1.12)
 position = Vector2(773, 500)
 
 [node name="shootgun" parent="." instance=ExtResource("5_swmse")]
-position = Vector2(546, 319)
+position = Vector2(464, 496)
 shoot_cooldown = 1.0
 
 [node name="Button_red" parent="." instance=ExtResource("6_qcvu7")]

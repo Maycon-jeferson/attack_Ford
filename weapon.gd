@@ -32,7 +32,8 @@ func bullet_fire():
 		bullet_instance.rotation = rotation
 		shoot_timer = shoot_cooldown
 
-		# Aplica recuo no player
+		# Aplica recuo no player (direção oposta ao tiro)
 		if player and player.has_method("apply_recoil"):
-			var recoil_direction = (player.global_position - muzzle.global_position).normalized()
+			# Calcula a direção do recoil baseada na rotação da arma
+			var recoil_direction = Vector2(-cos(rotation), -sin(rotation)).normalized()
 			player.apply_recoil(recoil_direction * recoil_force)
