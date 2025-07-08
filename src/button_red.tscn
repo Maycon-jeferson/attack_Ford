@@ -1,19 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbuxcak6jbq0h"]
+[gd_scene load_steps=8 format=3 uid="uid://bbuxcak6jbq0h"]
 
 [ext_resource type="Script" uid="uid://cjs883inr848l" path="res://src/button_red.gd" id="1_ldmho"]
+[ext_resource type="Texture2D" uid="uid://dw268fu6ehim6" path="res://src/button_green1.png" id="2_8wn30"]
+[ext_resource type="Texture2D" uid="uid://maik3vvwoapp" path="res://src/button_red1.png" id="3_t1acy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldmho"]
-size = Vector2(40, 40)
+size = Vector2(33.3333, 33.3333)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1acy"]
+atlas = ExtResource("2_8wn30")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qo6f3"]
+atlas = ExtResource("3_t1acy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qo6f3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1acy")
+}],
+"loop": true,
+"name": &"button_green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qo6f3")
+}],
+"loop": true,
+"name": &"button_red",
+"speed": 5.0
+}]
 
 [node name="Button_red" type="Area2D" groups=["button"]]
-scale = Vector2(0.3, 0.3)
 script = ExtResource("1_ldmho")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(20, 20)
+position = Vector2(-9.93411e-08, -9.93411e-08)
 shape = SubResource("RectangleShape2D_ldmho")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(1, 0.32, 0.32, 1)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qo6f3")
+animation = &"button_green"
