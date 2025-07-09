@@ -9,8 +9,24 @@ var shoot_cooldown: float
 var recoil_force: float
 var shoot_timer: float = 0.0
 
+# Variável para controlar o ângulo da arma ao redor do player
+var angle_around_player: float = 0.0
+
+# Offset do centro de rotação em relação ao player
+@export var center_offset: Vector2 = Vector2.ZERO
+
 func _process(delta: float) -> void:
-	look_at(get_global_mouse_position())
+	var orbit_radius = 40.0 # ajuste conforme necessário
+	if get_parent():
+		# Calcula o ângulo entre o centro de rotação (WeaponPivot) e o mouse
+		var mouse_pos = get_global_mouse_position()
+		var center = get_parent().global_position
+		angle_around_player = (mouse_pos - center).angle()
+		# Calcula a nova posição ao redor do WeaponPivot
+		var offset = Vector2(cos(angle_around_player), sin(angle_around_player)) * orbit_radius
+		global_position = center + offset
+		# Faz a arma olhar para o mouse
+		look_at(mouse_pos)
 	rotate_weapon()
 
 	shoot_timer = max(shoot_timer - delta, 0.0)

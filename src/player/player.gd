@@ -11,7 +11,7 @@ var recoil_damping: float = 12.0 # quanto maior, mais rápido o recuo é amortec
 var max_recoil_speed: float = 350.0 # limite máximo para o recuo
 #var bullet_speed: float
 
-@onready var weapon: Node2D = $Weapon
+@onready var weapon: Node2D = $WeaponPivot/Weapon
 # Referência para o futuro Sprite2D do player
 @onready var player_sprite: Sprite2D = get_node_or_null("Sprite2D")
 
