@@ -11,6 +11,8 @@ var recoil_damping: float = 12.0 # quanto maior, mais rápido o recuo é amortec
 var max_recoil_speed: float = 350.0 # limite máximo para o recuo
 #var bullet_speed: float
 
+@onready var animate: AnimatedSprite2D = $AnimatedSprite2D
+
 @onready var weapon: Node2D = $WeaponPivot/Weapon
 # Referência para o futuro Sprite2D do player
 @onready var player_sprite: Sprite2D = get_node_or_null("Sprite2D")
@@ -25,6 +27,21 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	move(delta)
+	update_sprite_direction()
+
+func update_sprite_direction():
+	# Obtém a posição global do mouse
+	var mouse_pos = get_global_mouse_position()
+	
+	# Calcula a direção do mouse em relação ao player
+	var direction_to_mouse = mouse_pos - global_position
+	
+	# Se o mouse está à esquerda do player, espelha o sprite
+	if direction_to_mouse.x < 0:
+		animate.flip_h = true
+	# Se o mouse está à direita do player, mantém o sprite normal
+	elif direction_to_mouse.x > 0:
+		animate.flip_h = false
 
 func move(delta: float):
 	var direction = Vector2.ZERO
@@ -34,9 +51,13 @@ func move(delta: float):
 
 	if Input.is_action_pressed("ui_right"):
 		direction.x += 1
-	if Input.is_action_pressed("ui_left"):
+		animate.play("run")
+	elif Input.is_action_pressed("ui_left"):
 		direction.x -= 1
-
+		animate.play("run")
+	else:
+		animate.play("Idle")	
+	
 	if is_on_floor() and Input.is_action_just_pressed("ui_accept"):
 		velocity.y = -jump_force
 
@@ -91,8 +112,3 @@ func equip_weapon(data: Dictionary):
 		
 	if data.has("recoil_force"):
 		recoil_force = data["recoil_force"]
-
-# Método para aplicar textura no sprite do player (futuro)
-#func set_player_texture(texture: Texture2D) -> void:
-	#if player_sprite:
-		#player_sprite.texture = texture

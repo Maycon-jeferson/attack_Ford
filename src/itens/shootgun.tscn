@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwb7k76ggbi5y"]
 
 [ext_resource type="Script" uid="uid://b7vdl50drd214" path="res://src/itens/shootgun.gd" id="1_6qnu7"]
-[ext_resource type="Texture2D" uid="uid://dhso8s4hjhbvh" path="res://src/guns.png" id="2_6qnu7"]
+[ext_resource type="Texture2D" uid="uid://qps1wit3nyko" path="res://src/shotgun.png" id="2_6qnu7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3npua"]
 size = Vector2(56, 29)
@@ -16,7 +16,7 @@ shape = SubResource("RectangleShape2D_3npua")
 texture = ExtResource("2_6qnu7")
 
 [node name="Muzzle" type="Marker2D" parent="."]
-position = Vector2(28, -3)
+position = Vector2(32, 0)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

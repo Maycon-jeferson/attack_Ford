@@ -8,7 +8,6 @@ const bullet_scene = preload("res://src/behavior/bullet.tscn")
 var shoot_cooldown: float
 var recoil_force: float
 var shoot_timer: float = 0.0
-
 # Variável para controlar o ângulo da arma ao redor do player
 var angle_around_player: float = 0.0
 
@@ -28,13 +27,15 @@ func _process(delta: float) -> void:
 		# Faz a arma olhar para o mouse
 		look_at(mouse_pos)
 	rotate_weapon()
-
 	shoot_timer = max(shoot_timer - delta, 0.0)
 	bullet_fire()
 
 func rotate_weapon():
 	rotation_degrees = wrap(rotation_degrees, 0, 360)
-	scale.y = -1 if rotation_degrees > 90 and rotation_degrees < 270 else 1
+	if rotation_degrees > 90 and rotation_degrees < 270:
+		scale.y = -1
+	else:
+		scale.y = 1
 
 func bullet_fire():
 	shoot_cooldown = player.shoot_cooldown

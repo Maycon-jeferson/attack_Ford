@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://efoauy12ng3w"]
 
 [ext_resource type="Script" uid="uid://cb7bguq11rjfq" path="res://src/itens/ak_1.gd" id="1_1arb2"]
-[ext_resource type="Texture2D" uid="uid://da4yet1dueprh" path="res://src/gunst.png" id="2_d05dw"]
+[ext_resource type="Texture2D" uid="uid://dpkl2l3ovxqup" path="res://src/ak.png" id="2_d05dw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3npua"]
 size = Vector2(60.75, 30)
@@ -10,14 +10,13 @@ size = Vector2(60.75, 30)
 script = ExtResource("1_1arb2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -3)
 shape = SubResource("RectangleShape2D_3npua")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_d05dw")
 
 [node name="Muzzle" type="Marker2D" parent="."]
-position = Vector2(31, -8)
+position = Vector2(31, 0)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

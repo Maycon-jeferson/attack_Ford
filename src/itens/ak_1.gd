@@ -2,7 +2,7 @@
 extends Area2D
 
 @export var sprite_texture: Texture2D
-@export var shoot_cooldown: float = 0.2
+@export var shoot_cooldown: float = 0.35
 @export var recoil_force: float = 150.0
 @export var bullet_speed: float = 600.0
 @export var extra_behavior: Script  # pode ser um script que será instanciado
