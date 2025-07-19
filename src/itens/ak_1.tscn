@@ -7,6 +7,7 @@
 size = Vector2(60.75, 30)
 
 [node name="Ak_1" type="Area2D"]
+texture_filter = 1
 script = ExtResource("1_1arb2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

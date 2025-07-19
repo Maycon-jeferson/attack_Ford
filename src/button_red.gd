@@ -1,6 +1,6 @@
 extends Area2D
 
-var switch: bool
+var switch: bool = false
 
 @onready var animate = $AnimatedSprite2D
 

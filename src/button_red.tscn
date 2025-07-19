@@ -35,6 +35,7 @@ animations = [{
 }]
 
 [node name="Button_red" type="Area2D" groups=["button"]]
+texture_filter = 1
 script = ExtResource("1_ldmho")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -43,4 +44,4 @@ shape = SubResource("RectangleShape2D_ldmho")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qo6f3")
-animation = &"button_green"
+animation = &"button_red"
